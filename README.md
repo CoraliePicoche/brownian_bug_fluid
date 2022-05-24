@@ -30,7 +30,6 @@ All codes were tested on Ubuntu 16.04.
 
 Everyone is welcome to fork and re-use our code for further development in their own repository and project, following the conditions of the license (GPLv3). For any modification of this repository and/or push request, please open an issue first.
 
-For citation, use:
-XXX 
+For citation, use: Picoche, C., Young, W.R. & Barraquand, F. \[Re\] Reproductive pair correlations and the clustering of organisms. _ReScience C_, 8(1).
 
 If you wish to collaborate, please contact us at [coralie.picoche@u-bordeaux.fr](mailto:coralie.picoche@u-bordeaux.fr) and [frederic.barraquand@u-bordeaux.fr](mailto:frederic.barraquand@u-bordeaux.fr). 
