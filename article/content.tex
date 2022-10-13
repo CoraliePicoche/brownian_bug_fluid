@@ -8,7 +8,7 @@ Due to their size, phytoplankton organisms experience a mostly viscous environme
 In addition to replicating the numerical and mathematical results of Young et al. 2001, we also wished to present the mathematical derivations that were missing from the original paper, which should make this replication article more accessible to most readers, especially those without a fluid mechanics background. 
 %(see \cite{tennekes1972first} if further clarification on hydrodynamics phenomena is required).} 
 
-\subsection*{Brownian bug model}
+\section*{Brownian bug model}
 The Brownian bug model is defined as an individual-based model in continuous space and time, here presented in its 2D formulation. For efficient computer simulation, it is implemented in discrete time \cite{young_reproductive_2001}. Each particle is characterized by the vector of its Cartesian coordinates $\boldsymbol{x}=\begin{pmatrix} 
       x_1\\ 
       x_2 
@@ -37,24 +37,23 @@ Unless otherwise specified, each simulation is initialized with $N_0=20,000$ par
 % where $C$ is the concentration of particles, $\lambda$ is the growth rate ($\lambda=p/\tau$)  and $\mu$ is the death rate ($\mu=q/\tau$). When $\lambda=\mu$, the solution of eq. \ref{eq:ADR} is $C(\boldsymbol{x},t)=C_0$ where $C_0$ is the initial uniform concentration. To compare this theoretical distribution to the actual distribution, the Brownian bug model is run without the advection component ($U=0$). While the Brownian bug model is a discrete-time model, we consider $\tau \leftarrow 0.1$. \\
 % 
 % To assess the effect of the turbulent motion, the model is also run without its demographic component, but with advection and diffusion.
-\subsection*{Pair density function G(r,t)}
+\subsection*{Pair density function $G(r,t)$}
 
-The pair density function $G(\boldsymbol{x}_i,\boldsymbol{x}_j,t)$ is defined so that $G(\boldsymbol{x}_i,\boldsymbol{x}_j,t)dA_1dA_2$ is the probability of finding a pair of Brownian bugs with one member in the area $dA_1$ around $\boldsymbol{x}_i$ and the other in the area $dA_2$ around $\boldsymbol{x}_j$. $G(\boldsymbol{r},t)$ is actually called the pair correlation function in \cite{young_reproductive_2001}. The radial density function $g(r,t)$ is defined as $G(\boldsymbol{x}_i,\boldsymbol{x}_j,t)=C^2g(r,t)$ with $r=|\boldsymbol{x}_i-\boldsymbol{x}_j|$. As the pair correlation disappears when $r\rightarrow\infty$, $g\rightarrow 1$. \\
+The pair density function $G(\boldsymbol{x}_i,\boldsymbol{x}_j,t)$ is defined so that $G(\boldsymbol{x}_i,\boldsymbol{x}_j,t)dA_1dA_2$ is the probability of finding a pair of Brownian bugs with one member in the area $dA_1$ around $\boldsymbol{x}_i$ and the other in the area $dA_2$ around $\boldsymbol{x}_j$. Defining $\boldsymbol{\xi}=\boldsymbol{x}_i-\boldsymbol{x}_j$,  $G(\boldsymbol{\xi},t)$ is actually called the pair correlation function in \cite{young_reproductive_2001}. The radial density function $g(r,t)$ is defined as $G(\boldsymbol{\xi},t)=C^2g(r,t)$ where $C$ is the concentration of bugs and $r=|\boldsymbol{\xi}|$. As the pair correlation disappears when $r\rightarrow\infty$, $g\rightarrow 1$. \\
 
-\subsubsection*{Derivation of G(r,t)}
+\subsubsection*{Derivation of $G(r,t)$}
 
 All details of the derivation of $G(r,t)$ are to be found in the Supplementary Material. We finally obtain:
 
 \begin{equation}
-\frac{\partial G}{\partial t}=2Dr^{1-d}\frac{\partial}{\partial r}\left(r^{d-1}\frac{\partial G}{\partial r}\right)+2(\lambda-\mu)G+\gamma r^{1-d}\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{x})\label{eq:eq_2_Young_total}
+\frac{\partial G}{\partial t}=2Dr^{1-d}\frac{\partial}{\partial r}\left(r^{d-1}\frac{\partial G}{\partial r}\right)+2(\lambda-\mu)G+\gamma r^{1-d}\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{\xi})\label{eq:eq_2_Young_total}
 \end{equation}
-
-where $\boldsymbol{x}$ is the position of the particle, $\lambda$ is the birth rate and $\mu$ is the death rate. \\
+where $\lambda$ is the birth rate ($p=\lambda\tau$) and $\mu$ is the death rate ($q=\mu\tau$). \\
 
 We focus on the case $d=2$ and $\lambda=\mu$, which means Eq.~\ref{eq:eq_2_Young_total} can be reduced to
 
 \begin{equation}
-\frac{\partial G}{\partial t}=\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{x})\label{eq:eq_2_Young_reduced}
+\frac{\partial G}{\partial t}=\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{\xi}).\label{eq:eq_2_Young_reduced}
 \end{equation}
 
 The value of $\gamma$ is computed from simulations (see Supplementary Material).
@@ -65,24 +64,24 @@ CP and FB could only find the analytical solutions of $G(r,t)$ with and without 
 can be found; without advection, there is no steady-state and the solution changes through time. Let us first examine the steady-state solution, given by:
 
 \begin{align}
-  &  \frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{x})\nonumber & = & & 0 \\
-\Leftrightarrow & 2\pi r\left(\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{x})\right)\nonumber & = & & 0 \\
- \Leftrightarrow  & 2\pi\left(2D\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\gamma\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)\right)+2\pi r2\lambda C\delta(\boldsymbol{x}) & = & & 0.\label{eq:steady_state}
+  &  \frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{\xi})\nonumber & = & & 0 \\
+\Leftrightarrow & 2\pi r\left(\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{\gamma}{r}\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{\xi})\right)\nonumber & = & & 0 \\
+ \Leftrightarrow  & 2\pi\left(2D\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\gamma\frac{\partial}{\partial r}\left(r^{3}\frac{\partial G}{\partial r}\right)\right)+2\pi r2\lambda C\delta(\boldsymbol{\xi}) & = & & 0.\label{eq:steady_state}
 \end{align}
 
 We can then integrate Eq.~\ref{eq:steady_state} over a small area centered on a particle, with radius $\rho$. Let us first note that
 
 \begin{align}
-& \int_{\mathbb{R}^{2}}\delta(\boldsymbol{x})d^{2}\boldsymbol{x} & & = & & 1\nonumber \\
-\Leftrightarrow & \int_{0}^{2\pi}\int_{0}^{\rho}\delta(r')\delta(\theta)r'dr'd\theta & & = & & 1\nonumber \\
-\Leftrightarrow & 2\pi\int_{0}^{\rho}\delta(\boldsymbol{x'})r'dr' & & = & & 1\label{eq:delta_integration}
+& \int_{\mathbb{R}^{2}}\delta(\boldsymbol{x})d\boldsymbol{x} & & = & & 1\nonumber \\
+\Leftrightarrow & \int_{0}^{2\pi}\int_{0}^{\rho}\delta(r)\delta(\theta)rdrd\theta & & = & & 1\nonumber \\
+\Leftrightarrow & 2\pi\int_{0}^{\rho}\delta(r)rdr & & = & & 1.\label{eq:delta_integration}
 \end{align}
 
-where $\boldsymbol{x'}$ is the equivalent of $\boldsymbol{x}$ in polar coordinates. Using Eq.~\ref{eq:steady_state} and \ref{eq:delta_integration}, we can integrate between 0 and $\rho$, 
+Using Eq.~\ref{eq:steady_state} and \ref{eq:delta_integration}, we can integrate between 0 and $\rho$, 
 
 \begin{align}
- & & 0 & & = & & 2\pi\left(2D\rho\frac{\partial G}{\partial r}+\gamma\rho^{3}\frac{\partial G}{\partial r}\right)+2\lambda C\nonumber \\
-\Leftrightarrow & & \frac{\partial G}{\partial r} & & = & & -\frac{1}{2\pi}\frac{2\lambda C}{2D\rho+\gamma\rho^{3}}.\label{eq:deriv_G_r}
+ & & 0 & & = & & 2\pi\left(2D\rho\frac{\partial G}{\partial \rho}+\gamma\rho^{3}\frac{\partial G}{\partial \rho}\right)+2\lambda C\nonumber \\
+\Leftrightarrow & & \frac{\partial G}{\partial \rho} & & = & & -\frac{1}{2\pi}\frac{2\lambda C}{2D\rho+\gamma\rho^{3}}.\label{eq:deriv_G_r}
 \end{align}
 
 Eq.~\ref{eq:deriv_G_r} can now be integrated between $\rho$ and $\infty$, knowing that $G(\infty)=C^{2}$:
@@ -91,18 +90,19 @@ Eq.~\ref{eq:deriv_G_r} can now be integrated between $\rho$ and $\infty$, knowin
  C^{2}-G(\rho) = -\frac{1}{2\pi}{\displaystyle \int_{\rho}^{\infty}}\frac{2\lambda C}{2Dr+\gamma r^{3}}dr.\label{eq:deriv_G_r_int1}
 \end{equation}
 
-Using the variable change $u=2Dr+\gamma r^{3}$, the integral is equivalent
-to $\int\frac{u'}{u}du$.
-
-\begin{align}
- & C^{2}-G(\rho) & = & & -\frac{\lambda C}{2\pi}\frac{1}{4D}\left[\log(\gamma)-\log\left(\frac{2D}{r^{2}}+\gamma\right)\right]_{\rho}^{\infty}\label{eq:deriv_G_rint2}\\
-\Leftrightarrow & G(\rho) & = & & \frac{\lambda C}{8\pi D}\log\left(\frac{2D+\gamma \rho^{2}}{\gamma \rho^{2}}\right)+C^{2}\label{eq:G_rho}
-\end{align}
-
-Finally, the pair correlation function $g=G/C^{2}$ is defined as
-
+Using the variable change $u=\frac{2D}{r^{2}}+\gamma$, with $du=\frac{-4D}{r^{3}}dr$,
+the integral writes
 \begin{equation}
-g(r)=\frac{\lambda}{8\pi DC}\log\left(\frac{2D+\gamma r^{2}}{\gamma r^{2}}\right)+1.
+\begin{array}{ccc}
+G(\rho) & = & C^{2}+\frac{\lambda C}{\pi}{\displaystyle \int_{\frac{2D}{\rho^{2}}+\gamma}^{\gamma}}\frac{1}{r^{3}u}\frac{r^{3}}{-4D}du\\
+ & = & C^{2}-\frac{\lambda C}{4\pi D}\left[\ln u\right]_{\frac{2D}{\rho^{2}}+\gamma}^{\gamma}\\
+ & = & C^{2}-\frac{\lambda C}{4\pi D}\left(\ln(\gamma)-\ln\left(\frac{2D}{\rho^{2}}+\gamma\right)\right)\\
+ & = & C^{2}+\frac{\lambda C}{4\pi D}\ln\left(\frac{2D+\gamma \rho^{2}}{\gamma \rho^{2}}\right).
+\end{array}
+\end{equation}
+Finally, the pair correlation function $g=G/C^{2}$ is defined as
+\begin{equation}
+g(r)=\frac{\lambda}{4\pi DC}\ln\left(\frac{2D+\gamma r^{2}}{\gamma r^{2}}\right)+1.
 \end{equation}
 
 \subsubsection*{Analytical solution without advection}
@@ -110,13 +110,13 @@ g(r)=\frac{\lambda}{8\pi DC}\log\left(\frac{2D+\gamma r^{2}}{\gamma r^{2}}\right
 When $U=0$, $\gamma=0$ and there is no steady solution in 2D. We can get back to Eq.~\ref{eq:eq_2_Young_reduced}:
 
 \begin{equation}
-\frac{\partial G}{\partial t}=\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{x}).\label{eq:g_without_advection}
+\frac{\partial G}{\partial t}=\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+2\lambda C\delta(\boldsymbol{\xi}).\label{eq:g_without_advection}
 \end{equation}
 
 Assuming an isotropic environment (and switching to the Cartesian coordinate system), this means
 
 \begin{equation}
-\frac{\partial G}{\partial t}-2D\Delta G=2\lambda C\delta(\boldsymbol{x})
+\frac{\partial G}{\partial t}-2D\Delta G=2\lambda C\delta(\boldsymbol{\xi})
 \end{equation}
 
 where $\Delta=\nabla^{2}$ is the Laplacian operator. \\
@@ -124,27 +124,27 @@ where $\Delta=\nabla^{2}$ is the Laplacian operator. \\
 We therefore have 
 
 \begin{equation}
-\mathcal{L}G(\boldsymbol{x},t)=2\lambda C\delta(\boldsymbol{x})\label{eq:LG_lambda}
+\mathcal{L}G(\boldsymbol{\xi},t)=2\lambda C\delta(\boldsymbol{\xi})\label{eq:LG_lambda}
 \end{equation}
 
 where $\mathcal{L}$ is the linear differential operator $\partial_{t}-2D\Delta$. \\
 
-We can use a Green's function $H$, defined with $\mathcal{L}H=\delta(\boldsymbol{x},t)=\delta(\boldsymbol{x})\delta(t)$. \\
+We can use a Green's function $H$, defined with $\mathcal{L}H=\delta(\boldsymbol{\xi},t)=\delta(\boldsymbol{\xi})\delta(t)$. \\
 
 By definition, we know that $G(y)=\int H(y,s)2\lambda C\delta(s)ds$
-(where $y=(\boldsymbol{x},t)$) is a solution to Eq.~\ref{eq:LG_lambda}.
+(where $y=(\boldsymbol{\xi},t)$) is a solution to Eq.~\ref{eq:LG_lambda}.
 
 \begin{align}
- & G(\boldsymbol{x},t) & = & & 2\lambda C\int_{\mathbb{R}^{2}}\int_{0}^{t}H(\boldsymbol{x}-\boldsymbol{x}',t')\delta(\boldsymbol{x}')d^2\boldsymbol{x}'dt'\nonumber \\
-\Leftrightarrow &  & = &  & 2\lambda C\int_{0}^{t}H(\boldsymbol{x},t')dt'\label{eq:g_int_H}
+ G(\boldsymbol{\xi},t)  =  & 2\lambda C\int_{\mathbb{R}^{2}}\int_{0}^{t}H(\boldsymbol{\xi}-\boldsymbol{\xi}',t')\delta(\boldsymbol{\xi}')d\boldsymbol{\xi}'dt'\nonumber \\
+ = &  2\lambda C\int_{0}^{t}H(\boldsymbol{\xi},t')dt'.\label{eq:g_int_H}
 \end{align}
 
 Eq.~\ref{eq:g_int_H} can be used in Eq.~\ref{eq:g_without_advection}:
 
 \begin{align}
- & \frac{\partial}{\partial t}\left(2\lambda C\int_{0}^{t}H(\boldsymbol{x},t')dt'\right) & & = & & 2D2\lambda C\Delta\int_{0}^{t}H(\boldsymbol{x},t')dt'+2\lambda C\delta(\boldsymbol{x})\\
-\Leftrightarrow & \int_{0}^{t}\left(\frac{\partial H(\boldsymbol{x},t')}{\partial t'}-2D\Delta H(\boldsymbol{x},t')\right)dt' & & = & & \delta(\boldsymbol{x})\\
-\Leftrightarrow & \int_{0}^{t}\delta(\boldsymbol{x})\delta(t')dt' & & = & & \delta(\boldsymbol{x})
+ & \frac{\partial}{\partial t}\left(2\lambda C\int_{0}^{t}H(\boldsymbol{\xi},t')dt'\right) & & = & & 2D2\lambda C\Delta\int_{0}^{t}H(\boldsymbol{\xi},t')dt'+2\lambda C\delta(\boldsymbol{\xi})\\
+\Leftrightarrow & \int_{0}^{t}\left(\frac{\partial H(\boldsymbol{\xi},t')}{\partial t'}-2D\Delta H(\boldsymbol{\xi},t')\right)dt' & & = & & \delta(\boldsymbol{\xi})\\
+\Leftrightarrow & \int_{0}^{t}\delta(\boldsymbol{\xi})\delta(t')dt' & & = & & \delta(\boldsymbol{\xi})
 \end{align}
 
 which is true. \\
@@ -220,7 +220,7 @@ The original article did not provide quantitative values exactly matching marine
 \Leftrightarrow U & = &\frac{2\pi\nu}{L}
 \end{eqnarray}
 % 
-where $\nu=10^{-6} \text{ m}^{2}.\text{s}^{-1}$ is the kinematic viscosity for water. These numerical values lead to $U=6.3\times10^{-4} \text{ m.s}^{-1}$. Note that $U$ is the speed in the frame of reference of the small square area considered here, which might itself be embedded within larger spatial structures (\textit{e.g.}, large eddies) moving at higher speeds in the ocean or any large waterbody.\\
+where $\nu=10^{-6} \text{ m}^{2}~\text{s}^{-1}$ is the kinematic viscosity for water. These numerical values lead to $U=6.3\times10^{-4} \text{ m~s}^{-1}$. Note that $U$ is the speed in the frame of reference of the small square area considered here, which might itself be embedded within larger spatial structures (e.g., large eddies) moving at higher speeds in the ocean or any large waterbody.\\
 
 To determine the diffusivity of small organisms, we use the Stokes-Einstein equation \citep{einstein1905molekularkinetischen}:
 
@@ -228,7 +228,7 @@ To determine the diffusivity of small organisms, we use the Stokes-Einstein equa
  D=\frac{RT}{N_{A}}\frac{1}{6\pi\eta a}
 \end{equation}
 
-where $R=8.314$ J.K$^{-1}$.mol$^{-1}$ is the molar gas constant, $T=293$ K is the temperature of the environment, $N_{A}=6.0225\times10^{23}$ is Avogadro's number, $\eta=10^{-3}\text{ m}^{-1}.\text{kg.s}^{-1}$ is the viscosity of water and $a$ is the radius of the organism considered. We apply this formula to microphytoplankton organisms of diameter 50 \textmu m, keeping $\tau$ outside of the equation for now:
+where $R=8.314$ J~K$^{-1}$~mol$^{-1}$ is the molar gas constant, $T=293$ K is the temperature of the environment, $N_{A}=6.0225\times10^{23}$ is Avogadro's number, $\eta=10^{-3}\text{ m}^{-1}~\text{kg~s}^{-1}$ is the viscosity of water and $a$ is the radius of the organism considered. We apply this formula to microphytoplankton organisms of diameter 50 \textmu m, keeping $\tau$ outside of the equation for now:
 
 \begin{eqnarray}
 \Delta & = & \sqrt{2D\tau}\\
@@ -239,9 +239,9 @@ where $R=8.314$ J.K$^{-1}$.mol$^{-1}$ is the molar gas constant, $T=293$ K is th
 
 To compute $\tau$, we can consider a phytoplankton doubling rate of $1$ d$^{-1}$ \citep{bissinger_predicting_2008}, which means, with $p=0.5$, that $\tau=0.5$ d.\\
 
-This leads to $U\tau/2\approx 5.4\times10^{3} \text{ cm.d}^{-1}$ and $\Delta \approx 5\times10^{-5}$ cm. These two values are much higher than those used in Fig. \ref{fig:pcf_Fig3} ($0.1<U\tau/2<2.5$ and $\Delta=10^{-7}$). A thorough discussion of the parameters is therefore necessary before extrapolating these results to real phytoplanktonic systems. \\
+This leads to $U\tau/2\approx 5.4\times10^{3} \text{ cm~d}^{-1}$ and $\Delta \approx 5\times10^{-5}$ cm. These two values are much higher than those used in Fig. \ref{fig:pcf_Fig3} ($0.1<U\tau/2<2.5$ and $\Delta=10^{-7}$). A thorough discussion of the parameters is therefore necessary before extrapolating these results to real phytoplanktonic systems. \\
 
-As the Brownian bug model is currently fairly theoretical in its 2D formulation, a logical next step would be to consider similar dynamics in a 3D-model, which would render the comparison to real data easier. Using actual concentrations of phytoplanktonic organisms (e.g. diatoms), between 10$^3$ and 10$^6$ C/L, this would lead to 1 to 10$^3$ organisms if we kept $L$ = 1 cm. We might therefore need to increase the size of the considered square, or apply the model to small bacteria only. With a closer match between field and simulated concentrations, the model could provide us with a better picture of the likely fine-scale spatial structure of phytoplanktonic populations. 
+As the Brownian bug model is currently fairly theoretical in its 2D formulation, a logical next step would be to consider similar dynamics in a 3D-model, which would render the comparison to real data easier. Using actual concentrations of phytoplanktonic organisms (e.g., diatoms), between 10$^3$ and 10$^6$ C/L, this would lead to 1 to 10$^3$ organisms if we kept $L$ = 1 cm. We might therefore need to increase the size of the considered square, or apply the model to small bacteria only. With a closer match between field and simulated concentrations, the model could provide us with a better picture of the likely fine-scale spatial structure of phytoplanktonic populations. 
 
 \section*{Acknowledgements}
 We are grateful to Francesco Turci for comments and to Rajesh Singh for detailed feedback and code suggestions. 

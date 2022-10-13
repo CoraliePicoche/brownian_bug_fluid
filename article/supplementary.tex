@@ -1,18 +1,18 @@
 \section*{Supplementary Material}
 
-\subsection*{Derivation of G(r,t)}
+\subsection*{Derivation of $G(r,t)$}
 
 \subsubsection*{Diffusion and birth/death processes}
 
 In this section, we aim to find back from first principles Eq.~2 in Young et al. \cite{young_reproductive_2001}, i.e. Eq.~\ref{eq:eq_2_Young_total} in our manuscript. We will first focus on the diffusion and birth/death processes, corresponding to the evolution equation for the pair density:
 
 \begin{equation}
- \frac{\partial G}{\partial t}=2Dr^{1-d}\frac{\partial}{\partial r}\left(r^{d-1}\frac{\partial G}{\partial r}\right)+2(\lambda-\mu)G+2\lambda C\delta(\boldsymbol{x})\label{eq:eq_2_Young_diffusionbirth}
+ \frac{\partial G}{\partial t}=2Dr^{1-d}\frac{\partial}{\partial r}\left(r^{d-1}\frac{\partial G}{\partial r}\right)+2(\lambda-\mu)G+2\lambda C\delta(\boldsymbol{\xi}).\label{eq:eq_2_Young_diffusionbirth}
 \end{equation}
 
 \vspace{1.25em}
 
-We first define an ensemble of $k$ identical Brownian bugs in a d-dimensional space. The bug number $p$ is located at $\boldsymbol{x}_{p}=[x_1,x_2,...x_{d}]$. At time $t$, the space is defined by (a) the number of Brownian
+We first define an ensemble of $k$ identical Brownian bugs in a $d$-dimensional space. The bug number $p$ is located at $\boldsymbol{x}_{p}=[x_1,x_2,...x_{d}]$. At time $t$, the space is defined by (a) the number of Brownian
 bugs $k$ and (b) the vector of their locations $\boldsymbol{X}_{k}=[\boldsymbol{x}_{1},\boldsymbol{x}_{2},...\boldsymbol{x}_{k}]$. This is also called the Fock space \citep{birch_master_2006}.\\
 
 The probability distribution over the state space is given by the functions $\mathcal{P}_{k}(\boldsymbol{X}_{k},t)$ such that:
@@ -27,7 +27,7 @@ As bugs are indistinguishable, we can exchange $\boldsymbol{x}_{p}$
 and $\boldsymbol{x}_{q}$ (permutation symmetry):
 
 \begin{equation}
-\mathcal{P}_{k}(\boldsymbol{x}_{1},\ldots,\boldsymbol{x}_{p},\ldots,\boldsymbol{x}_{q},\ldots,\boldsymbol{x}_{k},t)=\mathcal{P}_{k}(\boldsymbol{x}_{1},\ldots,\boldsymbol{x}_{q},\ldots,\boldsymbol{x}_{p},\ldots,\boldsymbol{x}_{k},t)
+\mathcal{P}_{k}(\boldsymbol{x}_{1},\ldots,\boldsymbol{x}_{p},\ldots,\boldsymbol{x}_{q},\ldots,\boldsymbol{x}_{k},t)=\mathcal{P}_{k}(\boldsymbol{x}_{1},\ldots,\boldsymbol{x}_{q},\ldots,\boldsymbol{x}_{p},\ldots,\boldsymbol{x}_{k},t).
 \end{equation}
 
 \vspace{1.25em}
@@ -46,17 +46,18 @@ the probability that there are $k$ bugs and bug number 1 is in $d\boldsymbol{x}$
 The density of points is defined as:
 
 \begin{equation}
-\rho(\boldsymbol{x},t)=\sum_{k=1}^{\infty}kb_{k}(\boldsymbol{x},t)=\sum_{k=1}^{\infty}k\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{X}_{k-1},t)d\boldsymbol{X}_{k-1}
+\rho(\boldsymbol{x},t)=\sum_{k=1}^{\infty}kb_{k}(\boldsymbol{x},t)=\sum_{k=1}^{\infty}k\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{X}_{k-1},t)d\boldsymbol{X}_{k-1}.
 \end{equation}
 
 The pair correlation function is then:
 
 \begin{equation}
-G(\boldsymbol{x},\boldsymbol{y},t)=\sum_{k=2}^{\infty}k(k-1)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2} \label{eq:def_pairdens}
+G(\boldsymbol{x},\boldsymbol{y},t)=\sum_{k=2}^{\infty}k(k-1)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}. \label{eq:def_pairdens}
 \end{equation}
 
 We define the two particle distribution functions $c_{k}(\boldsymbol{x},\boldsymbol{y},t)=\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}$. Note that $G(\boldsymbol{x},\boldsymbol{y},t)=\sum_{k=2}^{\infty}k(k-1)c_{k}(\boldsymbol{x},\boldsymbol{y},t)$.\\
 
+\newpage
 \textbf{\underline{Proposition}}\\
 
 The time derivative of $c_k$ is given by:
@@ -66,11 +67,9 @@ The time derivative of $c_k$ is given by:
 \frac{\partial c_{k}}{\partial t}(\boldsymbol{x},\boldsymbol{y},t) & =D\nabla_{2}^{2}c_{k}\label{ck_diffusion-1}\\
  & -k(\lambda+\mu)c_{k}\label{ck_same_state-1}\\
  & +(k+1)\mu c_{k+1}\label{ck_death-1}\\
- & +2\frac{\lambda}{k}\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+\lambda\frac{(k-2)(k+1)}{k}c_{k-1}\label{ck_birth-1}
+ & +2\frac{\lambda}{k}\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+\lambda\frac{(k-2)(k+1)}{k}c_{k-1}.\label{ck_birth-1}
 \end{align}
 \end{subequations}
-
-\newpage
 
 \textbf{\underline{Proof}}\\
 
@@ -84,8 +83,7 @@ We write the evolution of $\mathcal{P}_{k}(\boldsymbol{X}_{k},t)$:
  & +\frac{\lambda}{k}\sum_{p=1}^{k}\sum_{q=1,q\neq p}^{k}\delta({\boldsymbol{x}_p-\boldsymbol{x}_q})\mathcal{P}_{k-1}(\boldsymbol{X}_{k|p,t})\label{pk_birth}
 \end{align}
 \end{subequations}
-
-where $\nabla_{k}^{2}=\frac{\partial^{2}}{\partial_{x_{1}}^{2}}+\frac{\partial^{2}}{\partial_{y_{1}}^{2}}+\ldots+\frac{\partial^{2}}{\partial_{x_{k}}^{2}}+\frac{\partial^{2}}{\partial_{y_{k}}^{2}}$ and $\boldsymbol{X}_{k|p}=\boldsymbol{X}_{k}$
+where $\nabla_{k}^{2}=\frac{\partial^{2}}{\partial x_{1}^{2}}+\frac{\partial^{2}}{\partial y_{1}^{2}}+\ldots+\frac{\partial^{2}}{\partial x_{k}^{2}}+\frac{\partial^{2}}{\partial y_{k}^{2}}$ in two dimensions and $\boldsymbol{X}_{k|p}=\boldsymbol{X}_{k}$
 without $\boldsymbol{x}_{p}$. \\
 
 Here, Eq.~\ref{pk_diffusion} is the diffusion part of the process, 
@@ -99,7 +97,7 @@ the definition of $c_{k}$, we obtain:
 \frac{\partial c_{k}}{\partial t}(\boldsymbol{x},\boldsymbol{y},t) & =D\int\nabla_{k}^{2}\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}\label{ck_diffusion}\\
  & -k(\lambda+\mu)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}\label{ck_same_state}\\
  & +(k+1)\mu\int\mathcal{P}_{k+1}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},\boldsymbol{z},t)d\boldsymbol{X}_{k-2}d\boldsymbol{z}\label{ck_death}\\
- & +\frac{\lambda}{k}\int\sum_{p=1}^{k}\sum_{q=1,q\neq p}^{k}\delta({\boldsymbol{x}_p-\boldsymbol{x}_q})\mathcal{P}_{k-1}(\boldsymbol{X}_{k|p,t})d\boldsymbol{X}_{k-2}\label{ck_birth}
+ & +\frac{\lambda}{k}\int\sum_{p=1}^{k}\sum_{q=1,q\neq p}^{k}\delta({\boldsymbol{x}_p-\boldsymbol{x}_q})\mathcal{P}_{k-1}(\boldsymbol{X}_{k|p,t})d\boldsymbol{X}_{k-2}.\label{ck_birth}
 \end{align}
 \end{subequations}
 
@@ -122,7 +120,7 @@ because we already integrate over $k-2$ coordinates (and thus Laplacians for the
 
 
 \begin{equation}
-k(\lambda+\mu)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}=k(\lambda+\mu)c_{k}\label{2nd_term_deriv}
+k(\lambda+\mu)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},t)d\boldsymbol{X}_{k-2}=k(\lambda+\mu)c_{k}.\label{2nd_term_deriv}
 \end{equation}
 
 
@@ -131,7 +129,7 @@ k(\lambda+\mu)\int\mathcal{P}_{k}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{
 \begin{subequations} 
 \begin{align}
 (k+1)\mu\int\mathcal{P}_{k+1}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-2},\boldsymbol{z},t)d\boldsymbol{X}_{k-2}d\boldsymbol{z} & =(k+1)\mu\int\mathcal{P}_{k+1}(\boldsymbol{x},\boldsymbol{y},\boldsymbol{X}_{k-1},t)d\boldsymbol{X}_{k-1}\label{ck_death_2}\\
- & =(k+1)\mu c_{k+1}\label{death_term_deriv}
+ & =(k+1)\mu c_{k+1}.\label{death_term_deriv}
 \end{align}
 \end{subequations}
 
@@ -159,7 +157,7 @@ We can decompose the double sum, starting with $p=1$.
 \sum_{q=2}^{k}\delta({\boldsymbol{x}_1-\boldsymbol{x}_q})\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t) & =\delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{2})\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t)\\
  & +\delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{3})\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t)\\
  & +\ldots\\
- & +\delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{k})\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t)
+ & +\delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{k})\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t).
 \end{align}
 \end{subequations}
 
@@ -187,7 +185,7 @@ which leads to
 =&\delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{2})\int\mathcal{P}_{k-1}(\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{k},t)d\boldsymbol{x}_{3}\ldots d\boldsymbol{x}_{k}\\
  & +\int\mathcal{P}_{k-1}(\boldsymbol{x}_{1},\boldsymbol{x}_{2},\boldsymbol{X}_{k-3},t)d\boldsymbol{X}_{k-3}+\ldots\\
  & +\int\mathcal{P}_{k-1}(\boldsymbol{x}_{1},\boldsymbol{x}_{2},\boldsymbol{X}_{k-3},t)d\boldsymbol{X}_{k-3}\\
-= & \delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{2})b_{k-1}(\boldsymbol{x}_{2})+(k-2)c_{k-1}
+= & \delta(\boldsymbol{x}_{1}-\boldsymbol{x}_{2})b_{k-1}(\boldsymbol{x}_{2})+(k-2)c_{k-1}.
 \end{flalign}
 \end{subequations}
 
@@ -209,7 +207,7 @@ Now, we need to use $p\geq3$.
 = & 2\int\mathcal{P}_{k-1}(\boldsymbol{x}_{1},\boldsymbol{x}_{2},\boldsymbol{X}_{k-3},t)d\boldsymbol{X}_{k-3}\\
  & +(k-3)\int\mathcal{P}_{k-1}(\boldsymbol{x}_{1},\boldsymbol{x}_{2},\boldsymbol{X}_{k-3},t)d\boldsymbol{X}_{k-3}\label{eq:birth_term_pgeq3_part2}\\
 = & 2c_{k-1}+(k-3)c_{k-1}\\
-= & (k-1)c_{k-1}
+= & (k-1)c_{k-1}.
 \end{flalign}
 \end{subequations}
 
@@ -218,7 +216,7 @@ Thus, $\sum_{p=3}^{k}\sum_{q\neq p} \int \delta(\boldsymbol{x}_{p}-\boldsymbol{x
 Finally, the birth term is
 
 \begin{equation}
-\frac{\lambda}{k}\Bigl(2\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+2(k-2)c_{k-1}+(k-2)(k-1)c_{k-1}\Bigr)=2\frac{\lambda}{k}\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+\lambda\frac{(k-2)(k+1)}{k}c_{k-1}
+\frac{\lambda}{k}\Bigl(2\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+2(k-2)c_{k-1}+(k-2)(k-1)c_{k-1}\Bigr)=2\frac{\lambda}{k}\delta(\boldsymbol{x}-\boldsymbol{y})b_{k-1}(\boldsymbol{x})+\lambda\frac{(k-2)(k+1)}{k}c_{k-1}.
 \end{equation}
 
 Combining all terms, we obtain the expected result:
@@ -234,7 +232,7 @@ Combining all terms, we obtain the expected result:
 
 \textbf{\underline{Proposition}}\\
 
-In cartesian coordinates, the pair density admits the following evolution equation:
+In Cartesian coordinates, the pair density admits the following evolution equation:
 
 \begin{equation} 
 \frac{\partial G}{\partial t}(\boldsymbol{x},\boldsymbol{y},t) =D\nabla_{2}^{2}G +2(\lambda-\mu)G + 2\lambda\delta(\boldsymbol{x}-\boldsymbol{y})\rho(\boldsymbol{x}).
@@ -320,65 +318,107 @@ Combining all terms, we have
 \end{align}
 \end{subequations}
 
+We can write the diffusion term in Eq. \ref{nk_diffusion-1}, $D\nabla_{2}^{2}G$
+where $\nabla_{2}^{2}=\frac{\partial^{2}}{\partial x_{1}^{2}}+\frac{\partial^{2}}{\partial y_{1}^{2}}+\frac{\partial^{2}}{\partial x_{2}^{2}}+\frac{\partial^{2}}{\partial y_{2}^{2}}$,
+with a more classical Laplacian operator. Hereafter, we use the notations $x$ and $y$ for coordinates, as opposed to positions $\boldsymbol{x}$ and $\boldsymbol{y}$. We define two points at
+positions $\mathbf{p}_{1}=(x_{1},y_{1})^{T}$ and $\mathbf{p}_{2}=(x_{2},y_{2})^{T}$,
+and the vectors $\boldsymbol{\xi}=\mathbf{p}_{1}-\mathbf{p}_{2}$
+and $\mathbf{\ensuremath{X=}}\left(\mathbf{p}_{1}+\mathbf{p}_{2}\right)/2$.
+Along $x$, the correspondence between coordinates is as follows:
+
+\begin{equation}
+\begin{cases}
+\xi_{x} & =x_{1}-x_{2}\\
+X_{x} & =\frac{x_{1}+x_{2}}{2}
+\end{cases}\Leftrightarrow\begin{cases}
+x_{1} & =X_{x}+\frac{\xi_{x}}{2}\\
+x_{2} & =X_{x}-\frac{\xi_{x}}{2}
+\end{cases},
+\end{equation}
+
+which can be derived as
+
+\begin{equation}
+\frac{\text{\ensuremath{\partial}}}{\partial x_{1}}=\frac{\partial}{\partial\xi_{x}}+\frac{1}{2}\frac{\partial}{\partial X_{x}}\Rightarrow\frac{\text{\ensuremath{\partial^{2}}}}{\partial x_{1}^{2}}=\frac{\partial^{2}}{\partial\xi_{x}^{2}}+\frac{1}{4}\frac{\partial^{2}}{\partial X_{x}^{2}}+\frac{\partial^{2}}{\partial\xi_{x}\partial X_{x}}
+\end{equation}
+
+and
+
+\begin{equation}
+\frac{\text{\ensuremath{\partial}}}{\partial x_{2}}=-\frac{\partial}{\partial\xi_{x}}+\frac{1}{2}\frac{\partial}{\partial X_{x}}\Rightarrow\frac{\text{\ensuremath{\partial^{2}}}}{\partial x_{2}^{2}}=\frac{\partial^{2}}{\partial\xi_{x}^{2}}+\frac{1}{4}\frac{\partial^{2}}{\partial X_{x}^{2}}-\frac{\partial^{2}}{\partial\xi_{x}\partial X_{x}}.
+\end{equation}
+
+Therefore
+
+\begin{equation}
+\frac{\partial^{2}}{\partial x_{1}^{2}}+\frac{\partial^{2}}{\partial x_{2}^{2}}=2\frac{\partial^{2}}{\partial\xi_{x}^{2}}+\frac{1}{2}\frac{\partial^{2}}{\partial X_{x}^{2}}.
+\end{equation}
+
+With the same arguments,
+
+\begin{equation}
+\frac{\partial^{2}}{\partial y_{1}^{2}}+\frac{\partial^{2}}{\partial y_{2}^{2}}=2\frac{\partial^{2}}{\partial\xi_{y}^{2}}+\frac{1}{2}\frac{\partial^{2}}{\partial X_{y}^{2}}
+\end{equation}
+
+and, finally, 
+
+\begin{equation}
+\frac{\partial^{2}}{\partial x_{1}^{2}}+\frac{\partial^{2}}{\partial y_{1}^{2}}+\frac{\partial^{2}}{\partial x_{2}^{2}}+\frac{\partial^{2}}{\partial y_{2}^{2}}=2\left(\frac{\partial^{2}}{\partial\xi_{x}^{2}}+\frac{\partial^{2}}{\partial\xi_{y}^{2}}\right)+\frac{1}{2}\left(\frac{\partial^{2}}{\partial X_{x}^{2}}+\frac{\partial^{2}}{\partial X_{y}^{2}}\right).\label{eq:final}
+\end{equation}
+
+As the environment is homogeneous, $\frac{\partial G}{\partial X_{x}}=\frac{\partial^{2}G}{\partial X_{x}^{2}}=\frac{\partial G}{\partial X_{y}}=\frac{\partial^{2}G}{\partial X_{y}^{2}}=0$.
+
+We can thus write $D\nabla_{2}^{2}G(\mathbf{p}_{1},\mathbf{p}_{2},t)=2D\nabla^{2}G(\boldsymbol{\xi},t)$.
+The Laplacian formulation we have used above corresponds to Cartesian
+coordinates. Its equivalent in polar coordinates is $\nabla^{2}G=\frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)+\frac{1}{r^{2}}\frac{\partial^{2}G}{\partial\theta^{2}}$.
+As the process is isotropic, $\frac{\partial^{2}G}{\partial\theta^{2}}=0$.
+Finally, we can write
+
+\begin{equation}
+2D\nabla^{2}G(\boldsymbol{\xi},t)=\frac{2D}{r}\frac{\partial}{\partial r}\left(r\frac{\partial G}{\partial r}\right)
+\end{equation}
+
+with $r=|\boldsymbol{\xi}|$.
+
 \subsubsection*{Advection process}
 
-Using the Kraichnan equations \cite{kraichnan_convection_1974}, we prove that, taking only advection into account:
+The stretching of line elements considered by Kraichnan \cite{kraichnan_convection_1974} leads to the following term for the advection process:
 
 \begin{equation}
 \frac{\partial G}{\partial t}=\gamma r^{1-d}\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right). \label{eq:eq_2_Young_advection}
 \end{equation}
 
-Let $\boldsymbol{r}(t)$ be the distance between two points as a function of time, which follows a geometric Brownian motion, and $\boldsymbol{q}(t)=\log(\boldsymbol{r}(t))/\log(\boldsymbol{r}(0))$.
-Kraichnan defines $Q(\boldsymbol{q})$ as the probability distribution of $\boldsymbol{q}$. We have $Q=r^{d}G$. From Kraichnan \cite{kraichnan_convection_1974} and Fokker-Planck equations, we know that:
+We show below that this equation corresponds indeed to the convection of passive scalars in the Batchelor regime envisioned by Kraichnan \cite{kraichnan_convection_1974}. Let $r(t)$ be the distance between two points as a function of time, which follows a geometric Brownian motion as we are in the Batchelor regime, and $q(t)=\log(r(t)/r(0))$.
+Kraichnan defines $Q(q)$ as the probability distribution of $q$. We have $Q=r^{d}G$, leading to
 
 \begin{equation}
-\frac{\partial Q}{\partial t}=\gamma\frac{\partial^{2}Q}{\partial q^{2}}-\gamma d\frac{\partial Q}{\partial q}\label{eq:FokkerPlanck}
+    \begin{split}
+        \frac{\partial G}{\partial r} = \frac{\partial}{\partial r} \left( Q/r^d \right) =
+        \frac{1}{r^d}\frac{\partial Q}{\partial r} + Q (-d)r^{-d-1}.
+    \end{split}
 \end{equation}
 
-where $\gamma$ is the stretching parameter, i.e. the diffusivity and $\gamma d$ is the drift. \\
+Now 
+\begin{equation}
+    r^d \frac{\partial G}{\partial t} = 
+    \frac{\partial Q}{\partial t} = 
+    \gamma r \frac{\partial}{\partial r} \left( r  \frac{\partial Q}{\partial r} - dQ\right).
+\end{equation}
+We have $\frac{dq}{dr} = \frac{1}{r}$ so that using $\frac{\partial Q}{\partial r} = \frac{\partial Q}{\partial q} \frac{dq}{dr}$ we obtain 
+\begin{equation}
+    \frac{\partial Q}{\partial t} = \gamma \frac{\partial}{\partial q} \left( \frac{\partial Q}{\partial q} - dQ\right)  = 
+    \gamma \frac{\partial^2 Q}{\partial q^2} - \gamma d \frac{\partial Q}{\partial q} \label{eq:Fokker_Planck}
+\end{equation}
+which is the Fokker-Planck equation with diffusion coefficient $\gamma$ (noted $c$ in \cite{kraichnan_convection_1974}, and also called the stretching parameter) and drift $\gamma d$ (noted $<a>$ in \cite{kraichnan_convection_1974}). Eq. \ref{eq:Fokker_Planck} leads to Kraichnan's solution for pair separation (Eq. 2.31 in \cite{kraichnan_convection_1974}), with drift and diffusion coefficients linked by Eq. 2.27 and 2.33 in \cite{kraichnan_convection_1974}.  \\
 
-We have:
-
-\begin{subequations} 
-\begin{align}
-\frac{\partial Q}{\partial q} & =\frac{\partial(r^{d}G)}{\partial r}\frac{\partial r}{\partial q}\label{computedGdQ1}\\
- & =r\left(dr^{d-1}G+r^{d}\frac{\partial G}{\partial r}\right)\label{computedGdQ2}\\
- & =dr^{d}G+r^{d+1}\frac{\partial G}{\partial r}.
-\end{align}
- \end{subequations}
-
-Therefore,
-
-\begin{subequations}
-
-\begin{align}
-\frac{\partial^{2}Q}{\partial q^{2}} & =\frac{\partial}{\partial q}\left(\frac{\partial(r^{d}G)}{\partial r}\frac{\partial r}{\partial q}\right)\label{computedGdQ1-1}\\
- & =r\frac{\partial}{\partial r}\left(dr^{d}G+r^{d+1}\frac{\partial G}{\partial r}\right)\label{computedGdQ2-1}\\
- & =r\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right)+rd\frac{\partial(r^{d}G)}{\partial r}.
-\end{align}
-
-\end{subequations}
-
-Using Eq.~\ref{eq:FokkerPlanck},
-
-\begin{subequations}
-
-\begin{align}
-\frac{\partial(r^{d}G)}{\partial t} & =\gamma r\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right)+\gamma dr\frac{\partial(r^{d}G)}{\partial r}-\gamma dr\frac{\partial(r^{d}G)}{\partial r}\label{computedGdQ1-1-1}\\
-r^{d}\frac{\partial G}{\partial t} & =\gamma r\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right)\label{computedGdQ2-1-1}\\
- & =\gamma r^{1-d}\frac{\partial}{\partial r}\left(r^{d+1}\frac{\partial G}{\partial r}\right).\label{last_adv}
-\end{align}
-
-\end{subequations}
-
-Writing Eq.~\ref{last_adv} with Eq.~\ref{eq:eq_2_Young_diffusionbirth}, we obtain Eq.~\ref{eq:eq_2_Young_total}. 
+Combining Eq.~\ref{eq:eq_2_Young_advection} with Eq.~\ref{eq:eq_2_Young_diffusionbirth}, we obtain Eq.~\ref{eq:eq_2_Young_total}. 
 
 \subsection*{Stretching parameter $\gamma$}
 
 $\gamma$ is computed with simulations, using the formula $r(t)\propto \exp(\gamma dt)\rightarrow\frac{1}{2}\ln(r(t))=\gamma t$
 if $d=2$, with $r$ the separation between pairs of particles. $\gamma$ is estimated as the slope of $$\frac{1}{2}\left\langle \ln(r(t))\right\rangle =f(t)$$ with $\left\langle \ln(r(t))\right\rangle $ the average obtained from 800 pairs of particles. 
 
-$$\forall t,\left\langle \ln(r(t))\right\rangle =\frac{1}{800}\sum_{p=1}^{800}\ln(r(\boldsymbol{x}_{1,p}(t)-\boldsymbol{x}_{2,p}(t)))$$ 
+$$\forall t,\left\langle \ln(r(t))\right\rangle =\frac{1}{800}\sum_{p=1}^{800}\ln(r(\boldsymbol{x}_{1p}(t)-\boldsymbol{x}_{2p}(t)))$$ 
 
 where $r(\boldsymbol{x}_{1p}(t)-\boldsymbol{x}_{2p}(t))$ is the distance between a particle $1p$ at position $\boldsymbol{x}_{1p}$ and its counterpart $2p$, initialized with $r(0)=10^{-7}\forall p$ (see Fig.~\ref{fig:gamma_Utot} for $\gamma$ estimates).
 
